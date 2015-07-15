@@ -18,17 +18,17 @@
         return directive;
 
         /** @ngInject */
-        function BrainatlasController($scope, $element) {
+        function BrainatlasController($scope) {
             // Config for panzoom directive.
             $scope.panzoomConfig = {
-                zoomLevels: 12,
-                scalePerZoomLevel: 1.5,
+                zoomLevels: 20,
+                scalePerZoomLevel: 1.1,
                 neutralZoomLevel: 0,
-                zoomStepDuration: 0.1
+                zoomStepDuration: 0.05,
+                zoomToFitZoomLevelFactor: 1.0
             };
             $scope.panzoomModel = {};
 
-            $element.find('img').on('dragstart', _.constant(false));
         }
     }
 
