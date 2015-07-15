@@ -11,6 +11,7 @@
             restrict: 'E',
             templateUrl: 'app/components/brainatlas/brainatlas.html',
             scope: {
+                imageUrls: '='
             },
             controller: BrainatlasController
         };
@@ -29,6 +30,7 @@
             };
             $scope.panzoomModel = {};
 
+            console.log('urls:', $scope.imageUrls);
         }
     }
 
