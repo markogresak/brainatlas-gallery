@@ -1,10 +1,12 @@
 <div class="brainatlas-wrapper">
     <panzoom config="panzoomConfig" model="panzoomModel">
-        <img class="display-img" />
+        <img class="display-img" ng-src="{{displayedUrl}}" />
     </panzoom>
 
     <ul class="brainatlas-thumbnail-container list-inline text-nowrap">
-        <li ng-repeat="(index, url) in imageUrls track by $index" ng-click="setImage(index)">
+        <li ng-repeat="url in imageUrls"
+            ng-click="setImage(url)"
+            ng-class="{active: url === displayedUrl}">
             <img class="brainatlas-thumbnail" ng-src="{{url}}" />
         </li>
     </ul>
