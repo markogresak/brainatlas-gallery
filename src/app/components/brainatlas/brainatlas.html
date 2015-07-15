@@ -1,10 +1,11 @@
 <div class="brainatlas-wrapper">
     <panzoom config="panzoomConfig" model="panzoomModel">
-        <img src="http://placehold.it/500x500">
+        <img class="display-img" />
     </panzoom>
-    <ul class="brainatlas-thumbnail-container">
+
+    <ul class="brainatlas-thumbnail-container list-inline text-nowrap">
         <li ng-repeat="url in imageUrls">
-            <img src="{{url}}" />
+            <img class="brainatlas-thumbnail" ng-src="{{url}}" />
         </li>
     </ul>
 </div>
