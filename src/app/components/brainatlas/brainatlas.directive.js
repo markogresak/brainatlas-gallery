@@ -29,8 +29,6 @@
                 zoomToFitZoomLevelFactor: 1.0
             };
             $scope.panzoomModel = {};
-
-            console.log('urls:', $scope.imageUrls);
         }
     }
 

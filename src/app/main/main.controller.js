@@ -12,6 +12,5 @@
         };
 
         $scope.imageUrls = _.range(10).map(randomPlaceholder);
-        console.log('main: ', $scope.imageUrls);
     });
 })();
