@@ -4,7 +4,7 @@
     </panzoom>
 
     <ul class="brainatlas-thumbnail-container list-inline text-nowrap">
-        <li ng-repeat="url in imageUrls">
+        <li ng-repeat="(index, url) in imageUrls track by $index" ng-click="setImage(index)">
             <img class="brainatlas-thumbnail" ng-src="{{url}}" />
         </li>
     </ul>

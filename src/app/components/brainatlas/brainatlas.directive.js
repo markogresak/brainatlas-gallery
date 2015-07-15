@@ -19,7 +19,7 @@
         return directive;
 
         /** @ngInject */
-        function BrainatlasController($scope, $element) {
+        function BrainatlasController($scope, $element, $timeout) {
             // Config for panzoom directive.
             $scope.panzoomConfig = {
                 zoomLevels: 20,
@@ -30,7 +30,14 @@
             };
             $scope.panzoomModel = {};
 
-            $element.find('.brainatlas-thumbnail-container').flexisel();
+            $scope.setImage = function (imageIndex) {
+                console.log('set', imageIndex);
+                $element.find('.display-img').attr('src', $scope.imageUrls[imageIndex]);
+                $element.find('.brainatlas-thumbnail-container li.active').removeClass('active');
+                $element.find('.brainatlas-thumbnail-container li').eq(imageIndex).addClass('active');
+            };
+
+            $timeout(function () { $scope.setImage(0); }, 0);
         }
     }
 
