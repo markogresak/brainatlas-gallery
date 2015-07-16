@@ -27,3 +27,10 @@ exports.config = {
     defaultTimeoutInterval: 30000
   }
 };
+
+// If running on TravisCI, use only firefox.
+if(process.env.TRAVIS) {
+  exports.config.multiCapabilities = {
+    'browserName': 'firefox'
+  }
+}
