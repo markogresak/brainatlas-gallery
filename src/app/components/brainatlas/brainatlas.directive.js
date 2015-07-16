@@ -40,9 +40,22 @@
                 $scope.displayedUrl = imageUrl;
             };
 
-            // Call `setImage` with first image url (called when directive renders).
-            $timeout(function () { $scope.setImage($scope.imageUrls[0]); }, 0);
+            /**
+             * Scroll thumbnails wrapper.
+             *
+             * @param   {Boolean} direction false = left, true = right
+             */
+            $scope.scrollThumbnails = function (direction) {
+                var el = $element.find('.brainatlas-thumbnail-wrapper');
+                el.stop().animate({
+                    scrollLeft: el.scrollLeft() + 95 * (direction ? 1 : -1)
+                }, 200);
+            };
 
+            // Call `setImage` with first image url (called when directive renders).
+            $timeout(function () {
+                $scope.setImage($scope.imageUrls[0]);
+            }, 0);
         }
     }
 

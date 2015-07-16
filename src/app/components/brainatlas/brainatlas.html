@@ -1,13 +1,17 @@
 <div class="brainatlas-wrapper">
     <panzoom config="panzoomConfig" model="panzoomModel">
-        <img class="display-img" ng-src="{{displayedUrl}}" />
+        <img class="display-img" ng-src="{{displayedUrl}}"/>
     </panzoom>
 
-    <ul class="brainatlas-thumbnail-container list-inline text-nowrap">
-        <li ng-repeat="url in imageUrls"
-            ng-click="setImage(url)"
-            ng-class="{active: url === displayedUrl}">
-            <img class="brainatlas-thumbnail" ng-src="{{url}}" />
-        </li>
-    </ul>
+    <div class="brainatlas-outer-wrapper">
+        <span class="glyphicon glyphicon-chevron-left" ng-click="scrollThumbnails(false)"></span>
+        <div class="brainatlas-thumbnail-wrapper">
+            <ul class="brainatlas-thumbnail-container list-inline text-nowrap">
+                <li ng-class="{active: url === displayedUrl}" ng-click="setImage(url)" ng-repeat="url in imageUrls">
+                    <img class="brainatlas-thumbnail" ng-src="{{url}}"/>
+                </li>
+            </ul>
+        </div>
+        <span class="glyphicon glyphicon-chevron-right" ng-click="scrollThumbnails(true)"></span>
+    </div>
 </div>
