@@ -30,7 +30,7 @@ exports.config = {
 
 // If running on TravisCI, use only firefox.
 if(process.env.TRAVIS) {
-  exports.config.multiCapabilities = {
+  exports.config.multiCapabilities = [{
     'browserName': 'firefox'
-  }
+  }];
 }
