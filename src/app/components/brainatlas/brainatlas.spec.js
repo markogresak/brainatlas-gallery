@@ -67,6 +67,11 @@
         });
 
         describe('scrollThumbnails', function () {
+
+            beforeEach(function () {
+                scope.scrollThumbnails = jasmine.createSpy('scrollThumbnails');
+            });
+
             it('should call scrollThumbnails with false when clicking on left navigation arrow', function () {
                 expect(scope.scrollThumbnails).not.toHaveBeenCalled();
                 el.find('.glyphicon-chevron-left').click();
