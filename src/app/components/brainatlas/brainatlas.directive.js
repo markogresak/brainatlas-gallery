@@ -21,7 +21,7 @@
             // Config for panzoom directive.
             $scope.panzoomConfig = {
                 zoomLevels: 20,
-                scalePerZoomLevel: 1.1,
+                scalePerZoomLevel: 1.2,
                 neutralZoomLevel: 0,
                 zoomStepDuration: 0.05,
                 zoomToFitZoomLevelFactor: 1.0
