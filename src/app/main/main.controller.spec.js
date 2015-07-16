@@ -1,15 +1,22 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  describe('controllers', function(){
+    describe('controllers', function () {
 
-    beforeEach(module('brainatlasGallery'));
+        var controller, scope;
 
-    it('should define more than 5 awesome things', inject(function($controller) {
-      var vm = $controller('MainController');
+        beforeEach(module('brainatlasGallery'));
+        beforeEach(inject(function ($controller, $rootScope) {
+            scope = $rootScope.$new();
+            controller = $controller('MainController', {
+                $scope: scope
+            });
+        }));
 
-      expect(angular.isArray(vm.awesomeThings)).toBeTruthy();
-      expect(vm.awesomeThings.length > 5).toBeTruthy();
-    }));
-  });
+
+        it('should define 10 imageUrls', function () {
+            expect(scope.imageUrls).toEqual(jasmine.any(Array));
+            expect(scope.imageUrls.length).toEqual(10);
+        });
+    });
 })();
