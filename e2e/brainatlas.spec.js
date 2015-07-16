@@ -7,10 +7,20 @@ describe('Brainatlas directive', function () {
     beforeEach(function () {
         browser.get('/index.html');
         allThumbnails = element.all(by.css('.brainatlas-thumbnail'));
+        leftArrow = element(by.css('.glyphicon-chevron-left'));
+        rightArrow = element(by.css('.glyphicon-chevron-right'));
 
         getParent = function (el) {
             return el.element(by.xpath('..'));
         };
+
+        var getThumbnailWrapperScrollLeft = function () {
+            return document.querySelector('.brainatlas-thumbnail-wrapper').scrollLeft;
+        };
+
+        getScrollLeft = function () {
+            return browser.executeScript(getThumbnailWrapperScrollLeft);
+        }
 
         this.addMatchers({
             toHaveClass: function (a) {
@@ -58,5 +68,28 @@ describe('Brainatlas directive', function () {
         });
     });
 
+    describe('navigation arrows', function () {
+        it('should have an initial offset 0', function () {
+            getScrollLeft().then(function (initialScrollLeft) {
+                expect(initialScrollLeft).toBe(0);
+            });
+        });
+
+        it('should increase offset when clicking right navigation arrow', function () {
+            getScrollLeft().then(function (initialScrollLeft) {
+                rightArrow.click().then(getScrollLeft).then(function (newScrollLeft) {
+                    expect(initialScrollLeft).toBeLessThan(newScrollLeft);
+                });
+            });
+        });
+
+        it('should decrease offset when clicking left navigation arrow', function () {
+            // Click right arrow to increase offset, because it can't go below initial 0.
+            rightArrow.click().then(getScrollLeft).then(function (initialScrollLeft) {
+                leftArrow.click().then(getScrollLeft).then(function (newScrollLeft) {
+                    expect(initialScrollLeft).toBeGreaterThan(newScrollLeft);
+                });
+            });
+        });
     });
 });
