@@ -2,7 +2,7 @@
 
 describe('Brainatlas directive', function () {
 
-    var allThumbnails, getParent;
+    var allThumbnails, leftArrow, rightArrow, getParent, getScrollLeft;
 
     beforeEach(function () {
         browser.get('/index.html');
@@ -22,35 +22,41 @@ describe('Brainatlas directive', function () {
         });
     });
 
-    it('should include displayed image', function () {
-        var src = element(by.css('.display-img')).getAttribute('src');
-        // Match placehold.it url with 3 digit x 3 digit image size.
-        expect(src).toMatch(/http:\/\/placehold\.it\/\d{3}x\d{3}/);
+    describe('displayed image', function () {
+        it('should include displayed image', function () {
+            var src = element(by.css('.display-img')).getAttribute('src');
+            // Match placehold.it url with 3 digit x 3 digit image size.
+            expect(src).toMatch(/http:\/\/placehold\.it\/\d{3}x\d{3}/);
+        });
+
+        it('should change image url when another image is clicked', function () {
+            /**
+             * @returns {String}   The `src` attribute of displayed image.
+             */
+            var getSrc = function () {
+                return element(by.css('.display-img')).getAttribute('src');
+            };
+            var srcBefore = getSrc();
+            // Click second thumbnail.
+            allThumbnails.get(1).click();
+            var srcAfter = getSrc();
+            expect(srcBefore).not.toEqual(srcAfter);
+        });
     });
 
-    it('should change image url when another image is clicked', function () {
-        /**
-         * @returns {String}   The `src` attribute of displayed image.
-         */
-        var getSrc = function () {
-            return element(by.css('.display-img')).getAttribute('src');
-        };
-        var srcBefore = getSrc();
-        // Click second thumbnail.
-        allThumbnails.get(1).click();
-        var srcAfter = getSrc();
-        expect(srcBefore).not.toEqual(srcAfter);
+    describe('thumbnails', function () {
+        it('should set first element as active by default', function () {
+            expect(getParent(allThumbnails.first())).toHaveClass('active');
+        });
+
+        it('should change active element on click', function () {
+            expect(getParent(allThumbnails.first())).toHaveClass('active');
+            // Click second thumbnail.
+            allThumbnails.get(1).click();
+            expect(getParent(allThumbnails.first())).not.toHaveClass('active');
+            expect(getParent(allThumbnails.get(1))).toHaveClass('active');
+        });
     });
 
-    it('should set first element as active by default', function () {
-        expect(getParent(allThumbnails.first())).toHaveClass('active');
-    });
-
-    it('should change active element on click', function () {
-        expect(getParent(allThumbnails.first())).toHaveClass('active');
-        // Click second thumbnail.
-        allThumbnails.get(1).click();
-        expect(getParent(allThumbnails.first())).not.toHaveClass('active');
-        expect(getParent(allThumbnails.get(1))).toHaveClass('active');
     });
 });
