@@ -3,7 +3,7 @@
 
     describe('brainatlas', function () {
 
-        var imageUrls, el, scope;
+        var imageUrls, el, outerScope, scope;
 
         beforeEach(function () {
             imageUrls = _.range(10).map(function () {
@@ -12,17 +12,20 @@
         });
 
         beforeEach(module('brainatlasGallery'));
-        beforeEach(inject(function ($compile, $rootScope) {
+        beforeEach(inject(function ($compile, $rootScope, $timeout) {
             el = angular.element(
                 '<div class="widget-wrapper">' +
                     '<brainatlas image-urls="imageUrls"></brainatlas>' +
                 '</div>'
             );
-            scope = $rootScope;
-            $compile(el)(scope);
-            scope.$apply(function () {
-                scope.imageUrls = imageUrls;
-            });
+            outerScope = $rootScope.$new();
+            outerScope.imageUrls = imageUrls;
+            $compile(el)(outerScope);
+            outerScope.$digest();
+            scope = el.find('.brainatlas-wrapper').scope();
+            $timeout.flush(0);
+            spyOn(scope, 'setImage').and.callThrough();
+            spyOn(scope, 'scrollThumbnails').and.callThrough();
         }));
 
         it('should be compiled', function () {
