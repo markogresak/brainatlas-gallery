@@ -5,7 +5,6 @@
         .module('brainatlasGallery')
         .directive('brainatlas', brainatlas);
 
-    /** @ngInject */
     function brainatlas() {
         var directive = {
             restrict: 'E',
@@ -13,12 +12,11 @@
             scope: {
                 imageUrls: '='
             },
-            controller: BrainatlasController
+            controller: ['$scope', '$element', '$timeout', BrainatlasController]
         };
 
         return directive;
 
-        /** @ngInject */
         function BrainatlasController($scope, $element, $timeout) {
             // Config for panzoom directive.
             $scope.panzoomConfig = {
