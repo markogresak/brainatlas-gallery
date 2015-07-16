@@ -79,25 +79,20 @@ describe('Brainatlas directive', function () {
 
         it('should increase offset when clicking right navigation arrow', function () {
             getScrollLeft().then(function (initialScrollLeft) {
-                rightArrow.click().then(function () {
-                    getScrollLeft().then(function (newScrollLeft) {
-                        expect(initialScrollLeft).toBeLessThan(newScrollLeft);
-                    });
+                rightArrow.click().then(getScrollLeft).then(function (newScrollLeft) {
+                    expect(initialScrollLeft).toBeLessThan(newScrollLeft);
                 });
             });
         });
 
         it('should decrease offset when clicking left navigation arrow', function () {
             // Click right arrow to increase offset, because it can't go below initial 0.
-            rightArrow.click().then(function () {
-                getScrollLeft().then(function (initialScrollLeft) {
-                    leftArrow.click().then(function () {
-                        getScrollLeft().then(function (newScrollLeft) {
-                            expect(initialScrollLeft).toBeGreaterThan(newScrollLeft);
-                        });
-                    });
+            rightArrow.click().then(getScrollLeft).then(function (initialScrollLeft) {
+                leftArrow.click().then(getScrollLeft).then(function (newScrollLeft) {
+                    expect(initialScrollLeft).toBeGreaterThan(newScrollLeft);
                 });
             });
         });
+
     });
 });
