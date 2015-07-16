@@ -63,5 +63,17 @@
             expect(scope.setImage).toHaveBeenCalled();
         });
 
+        it('should call scrollThumbnails with false when clicking on left navigation arrow', function () {
+            expect(scope.scrollThumbnails).not.toHaveBeenCalled();
+            el.find('.glyphicon-chevron-left').click();
+            expect(scope.scrollThumbnails).toHaveBeenCalledWith(false);
+        });
+
+        it('should call scrollThumbnails with true when clicking on right navigation arrow', function () {
+            expect(scope.scrollThumbnails).not.toHaveBeenCalled();
+            el.find('.glyphicon-chevron-right').click();
+            expect(scope.scrollThumbnails).toHaveBeenCalledWith(true);
+        });
+
     });
 })();
