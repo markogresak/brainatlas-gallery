@@ -29,5 +29,12 @@
             expect(el.html()).not.toEqual(null);
         });
 
+        it('should have scope object with `imageUrls` member', function () {
+            expect(scope).toEqual(jasmine.any(Object));
+
+            expect(scope.imageUrls).toEqual(jasmine.any(Array));
+            expect(scope.imageUrls).toEqual(imageUrls);
+        });
+
     });
 })();
