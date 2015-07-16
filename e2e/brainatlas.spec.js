@@ -18,9 +18,8 @@ describe('Brainatlas directive', function () {
             return document.querySelector('.brainatlas-thumbnail-wrapper').scrollLeft;
         };
 
-        var thumbnailWrapper = element(by.css('.brainatlas-thumbnail-wrapper'));
         getScrollLeft = function () {
-            return browser.wait(thumbnailWrapper.isPresent).then(function () {
+            return browser.findElement(by.css('.brainatlas-thumbnail-wrapper')).then(function () {
                 return browser.executeScript(getThumbnailWrapperScrollLeft);
             });
         };
