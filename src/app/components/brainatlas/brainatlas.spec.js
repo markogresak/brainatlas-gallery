@@ -56,5 +56,12 @@
             expect(el.find('.display-img').eq(0).attr('src')).toEqual(imageUrls[0]);
         });
 
+        it('should call setImage on thumbnail click', function () {
+            expect(scope.setImage).not.toHaveBeenCalled();
+            // Click second thumbnail image.
+            el.find('.brainatlas-thumbnail-container li').eq(1).click();
+            expect(scope.setImage).toHaveBeenCalled();
+        });
+
     });
 })();
