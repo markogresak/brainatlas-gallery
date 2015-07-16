@@ -20,12 +20,8 @@ describe('Brainatlas directive', function () {
 
         var thumbnailWrapper = element(by.css('.brainatlas-thumbnail-wrapper'));
         getScrollLeft = function () {
-            return browser.wait(function () {
-                return thumbnailWrapper.isPresent().then(function (present) {
-                    return present;
-                }).then(function () {
-                    return browser.executeScript(getThumbnailWrapperScrollLeft);
-                });
+            return browser.wait(thumbnailWrapper.isPresent).then(function () {
+                return browser.executeScript(getThumbnailWrapperScrollLeft);
             });
         };
 
