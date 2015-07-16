@@ -44,5 +44,10 @@
             expect(scope.panzoomModel).toEqual(jasmine.any(Object));
         });
 
+        it('should define functions setImage and scrollThumbnails', function () {
+            expect(scope.setImage).toEqual(jasmine.any(Function));
+            expect(scope.scrollThumbnails).toEqual(jasmine.any(Function));
+        });
+
     });
 })();
