@@ -63,15 +63,14 @@ module.exports = function(config) {
   // If you ever plan to use Chrome and Travis, you can keep it
   // If not, you can safely remove it
   // https://github.com/karma-runner/karma/issues/1144#issuecomment-53633076
-  var chromeIndex = configuration.browsers.indexOf('Chrome');
-  if(chromeIndex !== -1 && process.env.TRAVIS) {
+  if(process.env.TRAVIS) {
     configuration.customLaunchers = {
       'chrome-travis-ci': {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
     };
-    configuration.browsers[chromeIndex] = 'chrome-travis-ci';
+    configuration.browsers = ['PhantomJS', 'Firefox', 'chrome-travis-ci'];
   }
 
   config.set(configuration);
