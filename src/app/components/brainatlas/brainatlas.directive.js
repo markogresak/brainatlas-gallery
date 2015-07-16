@@ -45,7 +45,7 @@
              */
             $scope.scrollThumbnails = function (direction) {
                 var el = $element.find('.brainatlas-thumbnail-wrapper');
-                el.stop().animate({
+                return el.stop().animate({
                     scrollLeft: el.scrollLeft() + 95 * (direction ? 1 : -1)
                 }, 200);
             };
