@@ -18,9 +18,16 @@ describe('Brainatlas directive', function () {
             return document.querySelector('.brainatlas-thumbnail-wrapper').scrollLeft;
         };
 
+        var thumbnailWrapper = element(by.css('.brainatlas-thumbnail-wrapper'));
         getScrollLeft = function () {
-            return browser.executeScript(getThumbnailWrapperScrollLeft);
-        }
+            return browser.wait(function () {
+                return thumbnailWrapper.isPresent().then(function (present) {
+                    return present;
+                }).then(function () {
+                    return browser.executeScript(getThumbnailWrapperScrollLeft);
+                });
+            });
+        };
 
         this.addMatchers({
             toHaveClass: function (a) {
@@ -77,17 +84,23 @@ describe('Brainatlas directive', function () {
 
         it('should increase offset when clicking right navigation arrow', function () {
             getScrollLeft().then(function (initialScrollLeft) {
-                rightArrow.click().then(getScrollLeft).then(function (newScrollLeft) {
-                    expect(initialScrollLeft).toBeLessThan(newScrollLeft);
+                rightArrow.click().then(function () {
+                    getScrollLeft().then(function (newScrollLeft) {
+                        expect(initialScrollLeft).toBeLessThan(newScrollLeft);
+                    });
                 });
             });
         });
 
         it('should decrease offset when clicking left navigation arrow', function () {
             // Click right arrow to increase offset, because it can't go below initial 0.
-            rightArrow.click().then(getScrollLeft).then(function (initialScrollLeft) {
-                leftArrow.click().then(getScrollLeft).then(function (newScrollLeft) {
-                    expect(initialScrollLeft).toBeGreaterThan(newScrollLeft);
+            rightArrow.click().then(function () {
+                getScrollLeft().then(function (initialScrollLeft) {
+                    leftArrow.click().then(function () {
+                        getScrollLeft().then(function (newScrollLeft) {
+                            expect(initialScrollLeft).toBeGreaterThan(newScrollLeft);
+                        });
+                    });
                 });
             });
         });
