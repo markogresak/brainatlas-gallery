@@ -49,5 +49,12 @@
             expect(scope.scrollThumbnails).toEqual(jasmine.any(Function));
         });
 
+        it('should set first image as displayed image', function () {
+            // Check for scope value.
+            expect(scope.displayedUrl).toEqual(imageUrls[0]);
+            // Check for src value.
+            expect(el.find('.display-img').eq(0).attr('src')).toEqual(imageUrls[0]);
+        });
+
     });
 })();
