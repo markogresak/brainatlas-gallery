@@ -32,47 +32,52 @@
             expect(el.html()).not.toEqual(null);
         });
 
-        it('should have scope object with `imageUrls` member', function () {
-            expect(scope).toEqual(jasmine.any(Object));
+        describe('scope values', function () {
+            it('should have scope object with `imageUrls` member', function () {
+                expect(scope).toEqual(jasmine.any(Object));
+                expect(scope.imageUrls).toEqual(jasmine.any(Array));
+                expect(scope.imageUrls).toEqual(imageUrls);
+            });
 
-            expect(scope.imageUrls).toEqual(jasmine.any(Array));
-            expect(scope.imageUrls).toEqual(imageUrls);
+            it('should define panzoom configuration objects', function () {
+                expect(scope.panzoomConfig).toEqual(jasmine.any(Object));
+                expect(scope.panzoomModel).toEqual(jasmine.any(Object));
+            });
+
+            it('should define functions setImage and scrollThumbnails', function () {
+                expect(scope.setImage).toEqual(jasmine.any(Function));
+                expect(scope.scrollThumbnails).toEqual(jasmine.any(Function));
+            });
         });
 
-        it('should define panzoom configuration objects', function () {
-            expect(scope.panzoomConfig).toEqual(jasmine.any(Object));
-            expect(scope.panzoomModel).toEqual(jasmine.any(Object));
+        describe('displayed image', function () {
+            it('should set first image as displayed image', function () {
+                // Check for scope value.
+                expect(scope.displayedUrl).toEqual(imageUrls[0]);
+                // Check for src value.
+                expect(el.find('.display-img').eq(0).attr('src')).toEqual(imageUrls[0]);
+            });
+
+            it('should call setImage on thumbnail click', function () {
+                expect(scope.setImage).not.toHaveBeenCalled();
+                // Click second thumbnail image.
+                el.find('.brainatlas-thumbnail-container li').eq(1).click();
+                expect(scope.setImage).toHaveBeenCalled();
+            });
         });
 
-        it('should define functions setImage and scrollThumbnails', function () {
-            expect(scope.setImage).toEqual(jasmine.any(Function));
-            expect(scope.scrollThumbnails).toEqual(jasmine.any(Function));
-        });
+        describe('scrollThumbnails', function () {
+            it('should call scrollThumbnails with false when clicking on left navigation arrow', function () {
+                expect(scope.scrollThumbnails).not.toHaveBeenCalled();
+                el.find('.glyphicon-chevron-left').click();
+                expect(scope.scrollThumbnails).toHaveBeenCalledWith(false);
+            });
 
-        it('should set first image as displayed image', function () {
-            // Check for scope value.
-            expect(scope.displayedUrl).toEqual(imageUrls[0]);
-            // Check for src value.
-            expect(el.find('.display-img').eq(0).attr('src')).toEqual(imageUrls[0]);
-        });
-
-        it('should call setImage on thumbnail click', function () {
-            expect(scope.setImage).not.toHaveBeenCalled();
-            // Click second thumbnail image.
-            el.find('.brainatlas-thumbnail-container li').eq(1).click();
-            expect(scope.setImage).toHaveBeenCalled();
-        });
-
-        it('should call scrollThumbnails with false when clicking on left navigation arrow', function () {
-            expect(scope.scrollThumbnails).not.toHaveBeenCalled();
-            el.find('.glyphicon-chevron-left').click();
-            expect(scope.scrollThumbnails).toHaveBeenCalledWith(false);
-        });
-
-        it('should call scrollThumbnails with true when clicking on right navigation arrow', function () {
-            expect(scope.scrollThumbnails).not.toHaveBeenCalled();
-            el.find('.glyphicon-chevron-right').click();
-            expect(scope.scrollThumbnails).toHaveBeenCalledWith(true);
+            it('should call scrollThumbnails with true when clicking on right navigation arrow', function () {
+                expect(scope.scrollThumbnails).not.toHaveBeenCalled();
+                el.find('.glyphicon-chevron-right').click();
+                expect(scope.scrollThumbnails).toHaveBeenCalledWith(true);
+            });
         });
 
     });
