@@ -39,5 +39,10 @@
             expect(scope.imageUrls).toEqual(imageUrls);
         });
 
+        it('should define panzoom configuration objects', function () {
+            expect(scope.panzoomConfig).toEqual(jasmine.any(Object));
+            expect(scope.panzoomModel).toEqual(jasmine.any(Object));
+        });
+
     });
 })();
