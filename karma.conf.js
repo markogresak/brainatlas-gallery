@@ -92,12 +92,12 @@ module.exports = function (config) {
             sl_chrome_osx1010: {
                 base: 'SauceLabs',
                 browserName: 'chrome',
-                platform: 'OS X Yosemite'
+                platform: 'OS X 10.10'
             },
             sl_chrome_osx1009: {
                 base: 'SauceLabs',
                 browserName: 'chrome',
-                platform: 'OS X Mavericks'
+                platform: 'OS X 10.9'
             },
             sl_firefox_windows81: {
                 base: 'SauceLabs',
@@ -117,22 +117,22 @@ module.exports = function (config) {
             sl_firefox_osx1010: {
                 base: 'SauceLabs',
                 browserName: 'firefox',
-                platform: 'OS X Yosemite'
+                platform: 'OS X 10.10'
             },
             sl_firefox_osx1009: {
                 base: 'SauceLabs',
                 browserName: 'firefox',
-                platform: 'OS X Mavericks'
+                platform: 'OS X 10.9'
             },
             sl_safari_osx1010: {
                 base: 'SauceLabs',
                 browserName: 'safari',
-                platform: 'OS X Yosemite'
+                platform: 'OS X 10.10'
             },
             sl_safari_osx1009: {
                 base: 'SauceLabs',
                 browserName: 'safari',
-                platform: 'OS X Mavericks'
+                platform: 'OS X 10.9'
             },
             sl_ie11_windows81: {
                 base: 'SauceLabs',
