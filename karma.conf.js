@@ -137,12 +137,14 @@ module.exports = function (config) {
             sl_ie11_windows81: {
                 base: 'SauceLabs',
                 browserName: 'internet explorer',
-                platform: 'Windows 8.1'
+                platform: 'Windows 8.1',
+                version: '11'
             },
             sl_ie11_windows7: {
                 base: 'SauceLabs',
                 browserName: 'internet explorer',
-                platform: 'Windows 7'
+                platform: 'Windows 7',
+                version: '11'
             },
             sl_iphone_ios8_safari: {
                 base: 'SauceLabs',
