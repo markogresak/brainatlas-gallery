@@ -67,117 +67,13 @@ module.exports = function (config) {
     // If not, you can safely remove it
     // https://github.com/karma-runner/karma/issues/1144#issuecomment-53633076
     if (process.env.TRAVIS) {
-        // Check for SauceLabs information.
-        if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
-            console.error('Make sure the SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables are set.');
-            process.exit(1);
-        }
-
         configuration.customLaunchers = {
-            sl_chrome_windows81: {
-                base: 'SauceLabs',
-                browserName: 'chrome',
-                platform: 'Windows 8.1'
-            },
-            sl_chrome_windows7: {
-                base: 'SauceLabs',
-                browserName: 'chrome',
-                platform: 'Windows 7'
-            },
-            sl_chrome_linux: {
-                base: 'SauceLabs',
-                browserName: 'chrome',
-                platform: 'linux'
-            },
-            sl_chrome_osx1010: {
-                base: 'SauceLabs',
-                browserName: 'chrome',
-                platform: 'OS X 10.10'
-            },
-            sl_chrome_osx1009: {
-                base: 'SauceLabs',
-                browserName: 'chrome',
-                platform: 'OS X 10.9'
-            },
-            sl_firefox_windows81: {
-                base: 'SauceLabs',
-                browserName: 'firefox',
-                platform: 'Windows 8.1'
-            },
-            sl_firefox_windows7: {
-                base: 'SauceLabs',
-                browserName: 'firefox',
-                platform: 'Windows 7'
-            },
-            sl_firefox_linux: {
-                base: 'SauceLabs',
-                browserName: 'firefox',
-                platform: 'linux'
-            },
-            sl_firefox_osx1010: {
-                base: 'SauceLabs',
-                browserName: 'firefox',
-                platform: 'OS X 10.10'
-            },
-            sl_firefox_osx1009: {
-                base: 'SauceLabs',
-                browserName: 'firefox',
-                platform: 'OS X 10.9'
-            },
-            sl_safari_osx1010: {
-                base: 'SauceLabs',
-                browserName: 'safari',
-                platform: 'OS X 10.10'
-            },
-            sl_safari_osx1009: {
-                base: 'SauceLabs',
-                browserName: 'safari',
-                platform: 'OS X 10.9'
-            },
-            sl_ie11_windows81: {
-                base: 'SauceLabs',
-                browserName: 'internet explorer',
-                platform: 'Windows 8.1',
-                version: '11'
-            },
-            sl_ie11_windows7: {
-                base: 'SauceLabs',
-                browserName: 'internet explorer',
-                platform: 'Windows 7',
-                version: '11'
-            },
-            sl_iphone_ios8_safari: {
-                base: 'SauceLabs',
-                browserName: 'iphone',
-                version: '8.2'
-            },
-            sl_ipad_ios8_safari: {
-                base: 'SauceLabs',
-                browserName: 'ipad',
-                version: '8.2'
-            },
-            sl_iphone_ios7_safari: {
-                base: 'SauceLabs',
-                browserName: 'iphone',
-                version: '7.1'
-            },
-            sl_ipad_ios7_safari: {
-                base: 'SauceLabs',
-                browserName: 'ipad',
-                version: '7.1'
+            'chrome-travis-ci': {
+                base: 'Chrome',
+                flags: ['--no-sandbox']
             }
         };
-
-        configuration.sauceLabs = {
-            testName: 'Brainatlas unit tests',
-            connectOptions: {
-                tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER
-            }
-        };
-
-        configuration.reporters.push('saucelabs');
-        configuration.browsers = Object.keys(configuration.customLaunchers);
-        configuration.captureTimeout = 120000;
+        configuration.browsers = ['PhantomJS', 'Firefox', 'chrome-travis-ci'];
     }
 
     config.set(configuration);
