@@ -33,6 +33,8 @@ module.exports = function (config) {
 
         frameworks: ['jasmine', 'angular-filesort'],
 
+        reporters: ['dots'],
+
         angularFilesort: {
             whitelist: [path.join(conf.paths.src, '/**/!(*.html|*.spec|*.mock).js')]
         },
