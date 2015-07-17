@@ -177,6 +177,7 @@ module.exports = function (config) {
 
         configuration.reporters.push('saucelabs');
         configuration.browsers = Object.keys(configuration.customLaunchers);
+        configuration.captureTimeout = 120000;
     }
 
     config.set(configuration);
