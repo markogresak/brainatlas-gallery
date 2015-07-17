@@ -1,13 +1,17 @@
 language: node_js
 node_js:
-  - '0.12'
-  - 'iojs'
+- '0.12'
+- iojs
 before_script:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3 # give xvfb some time to start
+- export CHROME_BIN=chromium-browser
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
 cache:
   directories:
-    - node_modules
-    - bower_components
+  - node_modules
+  - bower_components
+env:
+  global:
+  - secure: U4v5g2Xtwl4/Q6A2ipxUv6G+pNzEcwExZXa/yM7JnyG5+uk6FMZ7hiATdkVBfE6dsOD5t+22+wCYslw/JWcD310L+raSbbHWbjZYOSwq0bAe+U9fe4PB9anImEQmfKtxjMUGUo8uKMYPB3LjbCS9h6gCDsw0MRTbNgu1n1ZEiZYkTVZoCozpTBtXzpFISqGnq/eXa5g5gp6i2pJdg1HsROMjIPa/Cib+2x4Fo4vIv4veoQw7HPfl5qHpJHQDcIK1Ar8OirR8CZHsPk26u+ySScfkWCNkyD3IWp9oGqZoKEDghfTAKxRyUVG7CqQng32BrkT0PTZwINaMqnHSu97FZAFp5QeRP5ZlK2wiIEcJoBFbXQH+Jo6oO+TX8tK/bT/HUbw991zYQnAXSVUbD8n6oEr7gBUiyj0+I2szJlQs9UFg9K/TX6zFd2MacikHBonP+hFYk5Y/uQp3DPrb3uVWXqfsbE8IuH63rHsynqJEhka2qWiyEhNYPsT+I2Z97z2qtFAZBjQ5gUPS5esh+NTQP+YDb9+w3BT2AlsfCVr9sslYNds52+qAmzfkdNAS8I7TDCyqnxghoJ4BUtj1Ls6uKP+zFbQVTZD4k4z5VcOebhc3lHWjAfMtDhJKkt/6eckF07BLsvA0HCpfclPMkZk7g7lPhKfH4/pfg5A4yyWdCNs=
+  - secure: 1uXSelkGMvbGZR+S1WbAi+pbShGr6wi/01h4R7EhLDMoHeHQ6MxxeNoH40HdpIExu8Z05kPrw/dUhqFZNSxyVFYM9vRxrdIFg8Gjl/M8KBwiIF74CUyxnxbZetJQwE/6zI5LTPvf6Jy0SffEU36EKV1vd7axsTNiA8liQtR2T1w00qH+bipC+MdnWUnxa0Fj+KYV42aSHTFub9Gz5gnFKLnRNsbLQj9U0IAzKBuUS251IqqNva28QQka3lQC0s94JuLaOBatG3PGQSm/Uc9jW5JDVUVGGwgkr+FGICYeH67Mt/hTsAZ0vYgORncixy5r73C626FtcrDAqphcUQNBX8nvSVEiE5WOb95CcdB+Ts8VjAzlbHNv0qbI1xDe+V1pxcC8lfujL7TCPzWf0pIr1Y+3XBVyXFLjZeJpq02D9ElifMrHCw4YI5NWK/YxhSjAv9IZmYprTUz0DbBznSixo0Z2y7EBEwfr4VmEgjfjs68m+mRDgBZPQh4m/ExZdLNgYpyCtrjn5r++inFtuYwspd9a3S1wNBrmXbeWBwn75L3B01rDfX960WFBomyLO8awxV5FhtLkTqBaS9axIMPUc5LwSMHXwVNPFb8GGWaJu087WXvUGQAC0d6Cpi11e8YdzLApFrrGAy6d2bID2Nfm5xBlYh0WKQYJEhBNQ41gp7w=
