@@ -1,13 +1,15 @@
 <div class="brainatlas-wrapper">
-    <panzoom config="panzoomConfig" model="panzoomModel">
+    <div ng-show="isGenesEmpty()" class="brainatlas-no-results">Please select some genes to view Brainatlas images.</div>
+
+    <panzoom ng-show="!isGenesEmpty()" config="panzoomConfig" model="panzoomModel">
         <img class="display-img" ng-src="{{displayedUrl}}"/>
     </panzoom>
 
-    <div class="brainatlas-outer-wrapper">
+    <div ng-show="!isGenesEmpty()" class="brainatlas-outer-wrapper">
         <span class="glyphicon glyphicon-chevron-left" ng-click="scrollThumbnails(false)"></span>
         <div class="brainatlas-thumbnail-wrapper">
             <ul class="brainatlas-thumbnail-container list-inline text-nowrap">
-                <li ng-class="{active: url === displayedUrl}" ng-click="setImage(url)" ng-repeat="url in imageUrls">
+                <li ng-class="{active: i === displayedUrlIndex}" ng-click="setImage(url)" ng-repeat="(i, url) in imageUrls track by $index">
                     <img class="brainatlas-thumbnail" ng-src="{{url}}"/>
                 </li>
             </ul>
