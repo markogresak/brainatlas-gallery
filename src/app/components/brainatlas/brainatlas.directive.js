@@ -57,8 +57,8 @@
              *
              * @param {String} imageUrl Url (`src`) to new image.
              */
-            $scope.setImage = function (imageUrl) {
-                $scope.displayedUrl = imageUrl;
+            $scope.setImage = function(selectedIndex) {
+                $scope.displayedUrlIndex = selectedIndex;
             };
 
             /**
@@ -74,8 +74,8 @@
             };
 
             // Call `setImage` with first image url (called when directive renders).
-            $timeout(function () {
-                $scope.setImage($scope.imageUrls[0]);
+            $timeout(function() {
+                $scope.setImage(0);
             }, 0);
         }
     }
