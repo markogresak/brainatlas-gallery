@@ -1,3 +1,14 @@
+<div class="brainatlas-controls">
+    <select ng-model="selectedGene" class="form-control" name="selectedGene">
+        <option value="" selected disabled>Select a gene</option>
+        <option ng-selected="isSingeGene()" ng-repeat="geneId in genes()" value="{{geneId}}" ng-bind="geneId"></option>
+    </select>
+    <select ng-disabled="!selectedGene" ng-model="selectedExperiment" class="form-control" name="selectedExperiment">
+        <option value="" selected disabled>Select an experiment</option>
+        <option ng-selected="isSingeGene()" ng-repeat="expId in experiments()" value="{{expId}}" ng-bind="expId"></option>
+    </select>
+</div>
+
 <div class="brainatlas-wrapper">
     <div ng-show="isGenesEmpty()" class="brainatlas-no-results">Please select some genes to view Brainatlas images.</div>
 

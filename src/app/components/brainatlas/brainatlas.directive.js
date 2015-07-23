@@ -29,6 +29,29 @@
             // According to Panzoom docs, the model should be declared as empty object.
             $scope.panzoomModel = {};
 
+            $scope.genes = function() {
+                return _.keys($scope.imageUrls);
+            };
+
+            $scope.isGenesEmpty = function() {
+                return $scope.genes().length === 0;
+            };
+
+            $scope.isSingeGene = function() {
+                return $scope.genes().length === 1;
+            };
+
+            $scope.experiments = function(geneId) {
+                geneId = arguments[0] === undefined ? $scope.selectedGene : geneId;
+                return _.keys($scope.imageUrls[geneId]);
+            };
+
+            $scope.isSingleExperiment = function () {
+                return $scope.experiments($scope.selectedGene).length === 1;
+            };
+
+            $scope.selectedGene = '';
+
             /**
              * Update displayed image.
              *
